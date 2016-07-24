@@ -1,0 +1,45 @@
+register functions/score_boost
+[[0,0.0,0.0],true]
+table_create Entries TABLE_NO_KEY
+[[0,0.0,0.0],true]
+column_create Entries title COLUMN_SCALAR ShortText
+[[0,0.0,0.0],true]
+load --table Entries
+[
+{"title": "groonga and MySQL"}
+]
+[[0,0.0,0.0],1]
+select Entries --filter 'all_records() && score_boost(10.0)' --output_columns '_id,_score,title'
+[
+  [
+    0,
+    0.0,
+    0.0
+  ],
+  [
+    [
+      [
+        1
+      ],
+      [
+        [
+          "_id",
+          "UInt32"
+        ],
+        [
+          "_score",
+          "Int32"
+        ],
+        [
+          "title",
+          "ShortText"
+        ]
+      ],
+      [
+        1,
+        10,
+        "groonga and MySQL"
+      ]
+    ]
+  ]
+]
